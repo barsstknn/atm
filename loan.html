@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kredi Borcu Görme - ATM Simulator</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="logo">
+            <h1>ATM<span>Simulator</span></h1>
+        </div>
+        <div class="header-right">
+            <span class="welcome-text">Hoşgeldiniz</span>
+            <a href="index.html" onclick="logout()" class="btn btn-outline">Çıkış</a>
+        </div>
+    </header>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Anasayfa</span></a></li>
+            <li><a href="balance.html"><i class="fas fa-wallet"></i> <span>Bakiye Sorgulama</span></a></li>
+            <li><a href="withdraw.html"><i class="fas fa-money-bill-wave"></i> <span>Para Çekme</span></a></li>
+            <li><a href="deposit.html"><i class="fas fa-piggy-bank"></i> <span>Para Yatırma</span></a></li>
+            <li><a href="loan.html" class="active"><i class="fas fa-file-invoice-dollar"></i> <span>Kredi Borcu Görme</span></a></li>
+            <li><a href="minimum-payment.html"><i class="fas fa-calculator"></i> <span>Asgari Borç Hesaplama</span></a></li>
+        </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <main>
+            <div class="atm-container">
+                <h2>Kredi Borcu Görüntüleme</h2>
+                
+                <!-- Currency Sections -->
+                <div class="currency-sections">
+                    <!-- Turkish Lira Section -->
+                    <div class="currency-section">
+                        <div class="currency-header">
+                            <div class="currency-flag">
+                                <span class="flag-icon">🇹🇷</span>
+                            </div>
+                            <div class="currency-info">
+                                <h3>Türk Lirası</h3>
+                                <p class="currency-code">TRY</p>
+                            </div>
+                            <div class="currency-balance">
+                                <span class="balance-amount" id="tryLoan">₺15.000,00</span>
+                            </div>
+                        </div>
+                        <div class="currency-details expanded">
+                            <div class="detail-row">
+                                <span>Toplam Borç:</span>
+                                <span class="detail-value" id="tryTotal">₺15.000,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vadesi Geçmiş Borç:</span>
+                                <span class="detail-value">₺2.500,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vade Tarihi:</span>
+                                <span class="detail-value">15.12.2023</span>
+                            </div>
+                            <div class="account-details">
+                                <h4>Kredi Bilgileri</h4>
+                                <div class="detail-row">
+                                    <span>Kredi Numarası:</span>
+                                    <span class="detail-value">TR-KR-123456789</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>Hesap Numarası:</span>
+                                    <span class="detail-value">123456789</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- US Dollar Section -->
+                    <div class="currency-section">
+                        <div class="currency-header">
+                            <div class="currency-flag">
+                                <span class="flag-icon">🇺🇸</span>
+                            </div>
+                            <div class="currency-info">
+                                <h3>ABD Doları</h3>
+                                <p class="currency-code">USD</p>
+                            </div>
+                            <div class="currency-balance">
+                                <span class="balance-amount" id="usdLoan">$2.250,00</span>
+                            </div>
+                        </div>
+                        <div class="currency-details expanded">
+                            <div class="detail-row">
+                                <span>Toplam Borç:</span>
+                                <span class="detail-value" id="usdTotal">$2.250,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vadesi Geçmiş Borç:</span>
+                                <span class="detail-value">$500,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vade Tarihi:</span>
+                                <span class="detail-value">15.12.2023</span>
+                            </div>
+                            <div class="account-details">
+                                <h4>Kredi Bilgileri</h4>
+                                <div class="detail-row">
+                                    <span>Kredi Numarası:</span>
+                                    <span class="detail-value">US-KR-987654321</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>Hesap Numarası:</span>
+                                    <span class="detail-value">987654321</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Euro Section -->
+                    <div class="currency-section">
+                        <div class="currency-header">
+                            <div class="currency-flag">
+                                <span class="flag-icon">🇪🇺</span>
+                            </div>
+                            <div class="currency-info">
+                                <h3>Euro</h3>
+                                <p class="currency-code">EUR</p>
+                            </div>
+                            <div class="currency-balance">
+                                <span class="balance-amount" id="eurLoan">€1.800,00</span>
+                            </div>
+                        </div>
+                        <div class="currency-details expanded">
+                            <div class="detail-row">
+                                <span>Toplam Borç:</span>
+                                <span class="detail-value" id="eurTotal">€1.800,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vadesi Geçmiş Borç:</span>
+                                <span class="detail-value">€300,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vade Tarihi:</span>
+                                <span class="detail-value">15.12.2023</span>
+                            </div>
+                            <div class="account-details">
+                                <h4>Kredi Bilgileri</h4>
+                                <div class="detail-row">
+                                    <span>Kredi Numarası:</span>
+                                    <span class="detail-value">EU-KR-456789123</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>Hesap Numarası:</span>
+                                    <span class="detail-value">456789123</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="loanMessage"></div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="refreshLoans()" class="btn btn-primary">Borç Bilgilerini Yenile</button>
+                    <a href="index.html" class="btn btn-outline" style="margin-left: 10px;">Ana Sayfa</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'index.html';
+        }
+        
+        function refreshLoans() {
+            // In a real application, this would fetch fresh data from the server
+            alert('Kredi borç bilgileri yenilendi!');
+        }
+    </script>
+</body>
+</html>

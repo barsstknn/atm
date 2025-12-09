@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üye Ol - ATM Simulator</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="logo">
+            <h1>ATM<span>Simulator</span></h1>
+        </div>
+        <div class="header-right">
+            <a href="login.html" class="btn btn-outline">Giriş Yap</a>
+            <a href="register.html" class="btn btn-primary">Üye Ol</a>
+        </div>
+    </header>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Anasayfa</span></a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> <span>Giriş</span></a></li>
+            <li><a href="register.html" class="active"><i class="fas fa-user-plus"></i> <span>Üye Ol</span></a></li>
+            <li><a href="#"><i class="fas fa-info-circle"></i> <span>Hakkımızda</span></a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> <span>İletişim</span></a></li>
+        </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <main>
+            <div class="atm-container">
+                <h2>Yeni Hesap Oluştur</h2>
+                <form id="registerForm" class="transaction-form">
+                    <div class="form-group">
+                        <label for="firstName">Ad</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Adınızı girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Soyad</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Soyadınızı girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="tcNumber">TC Kimlik Numarası</label>
+                        <input type="text" id="tcNumber" name="tcNumber" required placeholder="TC kimlik numaranızı girin" maxlength="11">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Şifre</label>
+                        <input type="password" id="password" name="password" required placeholder="Şifrenizi girin" minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Şifre Tekrarı</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Şifrenizi tekrar girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="securityQuestion">Güvenlik Sorusu</label>
+                        <select id="securityQuestion" name="securityQuestion" required>
+                            <option value="">Bir güvenlik sorusu seçin</option>
+                            <option value="en_yakin_arkadas">En yakın arkadaşınızın adı nedir?</option>
+                            <option value="ilk_okul">İlk okulunuzun adı nedir?</option>
+                            <option value="dogum_yeri">Doğduğunuz yer neresidir?</option>
+                            <option value="anne_kizlik">Annemin kızlık soyadı nedir?</option>
+                            <option value="ilk_araba">İlk arabanızın modeli nedir?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityAnswer">Güvenlik Sorusu Cevabı</label>
+                        <input type="text" id="securityAnswer" name="securityAnswer" required placeholder="Güvenlik sorusunun cevabını girin">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Üye Ol</button>
+                        <a href="login.html" class="btn btn-outline" style="margin-left: 10px;">Giriş Sayfasına Dön</a>
+                    </div>
+                </form>
+                <div id="registerMessage"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const tcNumber = document.getElementById('tcNumber').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const securityQuestion = document.getElementById('securityQuestion').value;
+            const securityAnswer = document.getElementById('securityAnswer').value;
+            
+            // Validation
+            if (!firstName || !lastName || !tcNumber || !password || !confirmPassword || !securityQuestion || !securityAnswer) {
+                document.getElementById('registerMessage').innerHTML = '<div class="result-message error">Lütfen tüm alanları doldurun!</div>';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                document.getElementById('registerMessage').innerHTML = '<div class="result-message error">Şifreler eşleşmiyor!</div>';
+                return;
+            }
+            
+            if (tcNumber.length !== 11) {
+                document.getElementById('registerMessage').innerHTML = '<div class="result-message error">TC kimlik numarası 11 haneli olmalıdır!</div>';
+                return;
+            }
+            
+            // In a real application, this would send data to the server
+            document.getElementById('registerMessage').innerHTML = 
+                '<div class="result-message success">' + 
+                'Sayın ' + firstName + ' ' + lastName + ', hesabınız başarıyla oluşturulmuştur! ' +
+                'Giriş sayfasından hesabınıza erişebilirsiniz.' + 
+                '</div>';
+            
+            // Reset form
+            document.getElementById('registerForm').reset();
+        });
+    </script>
+</body>
+</html>

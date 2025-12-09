@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş - ATM Simulator</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="logo">
+            <h1>ATM<span>Simulator</span></h1>
+        </div>
+        <div class="header-right">
+            <a href="login.html" class="btn btn-outline">Giriş Yap</a>
+            <a href="register.html" class="btn btn-primary">Üye Ol</a>
+        </div>
+    </header>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Anasayfa</span></a></li>
+            <li><a href="login.html" class="active"><i class="fas fa-sign-in-alt"></i> <span>Giriş</span></a></li>
+            <li><a href="register.html"><i class="fas fa-user-plus"></i> <span>Üye Ol</span></a></li>
+            <li><a href="#"><i class="fas fa-info-circle"></i> <span>Hakkımızda</span></a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> <span>İletişim</span></a></li>
+        </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <main>
+            <div class="atm-container">
+                <h2>Hesap Giriş</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="accountNumber">Hesap Numarası</label>
+                        <input type="text" id="accountNumber" name="accountNumber" required placeholder="Hesap numaranızı girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="pin">PIN</label>
+                        <input type="password" id="pin" name="pin" required placeholder="PIN kodunuzu girin">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Giriş Yap</button>
+                    </div>
+                </form>
+                <div id="loginMessage"></div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p>Hesabınız yok mu? <a href="register.html" style="color: #3581f4; text-decoration: none; font-weight: 500;">Üye Ol</a></p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

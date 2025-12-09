@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asgari Borç Hesaplama - ATM Simulator</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="logo">
+            <h1>ATM<span>Simulator</span></h1>
+        </div>
+        <div class="header-right">
+            <span class="welcome-text">Hoşgeldiniz</span>
+            <a href="index.html" onclick="logout()" class="btn btn-outline">Çıkış</a>
+        </div>
+    </header>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Anasayfa</span></a></li>
+            <li><a href="balance.html"><i class="fas fa-wallet"></i> <span>Bakiye Sorgulama</span></a></li>
+            <li><a href="withdraw.html"><i class="fas fa-money-bill-wave"></i> <span>Para Çekme</span></a></li>
+            <li><a href="deposit.html"><i class="fas fa-piggy-bank"></i> <span>Para Yatırma</span></a></li>
+            <li><a href="loan.html"><i class="fas fa-file-invoice-dollar"></i> <span>Kredi Borcu Görme</span></a></li>
+            <li><a href="minimum-payment.html" class="active"><i class="fas fa-calculator"></i> <span>Asgari Borç Hesaplama</span></a></li>
+        </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <main>
+            <div class="atm-container">
+                <h2>Asgari Borç Hesaplama</h2>
+                
+                <!-- Currency Sections -->
+                <div class="currency-sections">
+                    <!-- Turkish Lira Section -->
+                    <div class="currency-section">
+                        <div class="currency-header" onclick="selectCurrency('try')">
+                            <div class="currency-flag">
+                                <span class="flag-icon">🇹🇷</span>
+                            </div>
+                            <div class="currency-info">
+                                <h3>Türk Lirası</h3>
+                                <p class="currency-code">TRY</p>
+                            </div>
+                            <div class="currency-balance">
+                                <span class="balance-amount" id="tryBalance">₺7.500,00</span>
+                            </div>
+                            <div class="radio-icon">
+                                <i class="fas fa-circle" id="tryRadio"></i>
+                            </div>
+                        </div>
+                        <div class="currency-details expanded">
+                            <div class="detail-row">
+                                <span>Toplam Borç:</span>
+                                <span class="detail-value" id="tryTotal">₺7.500,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vadesi Geçmiş Borç:</span>
+                                <span class="detail-value">₺1.200,00</span>
+                            </div>
+                            <div class="account-details">
+                                <h4>Kart Bilgileri</h4>
+                                <div class="detail-row">
+                                    <span>Kart Numarası:</span>
+                                    <span class="detail-value">**** **** **** 1234</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- US Dollar Section -->
+                    <div class="currency-section">
+                        <div class="currency-header" onclick="selectCurrency('usd')">
+                            <div class="currency-flag">
+                                <span class="flag-icon">🇺🇸</span>
+                            </div>
+                            <div class="currency-info">
+                                <h3>ABD Doları</h3>
+                                <p class="currency-code">USD</p>
+                            </div>
+                            <div class="currency-balance">
+                                <span class="balance-amount" id="usdBalance">$1.500,00</span>
+                            </div>
+                            <div class="radio-icon">
+                                <i class="fas fa-circle" id="usdRadio"></i>
+                            </div>
+                        </div>
+                        <div class="currency-details expanded">
+                            <div class="detail-row">
+                                <span>Toplam Borç:</span>
+                                <span class="detail-value" id="usdTotal">$1.500,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vadesi Geçmiş Borç:</span>
+                                <span class="detail-value">$300,00</span>
+                            </div>
+                            <div class="account-details">
+                                <h4>Kart Bilgileri</h4>
+                                <div class="detail-row">
+                                    <span>Kart Numarası:</span>
+                                    <span class="detail-value">**** **** **** 5678</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Euro Section -->
+                    <div class="currency-section">
+                        <div class="currency-header" onclick="selectCurrency('eur')">
+                            <div class="currency-flag">
+                                <span class="flag-icon">🇪🇺</span>
+                            </div>
+                            <div class="currency-info">
+                                <h3>Euro</h3>
+                                <p class="currency-code">EUR</p>
+                            </div>
+                            <div class="currency-balance">
+                                <span class="balance-amount" id="eurBalance">€900,00</span>
+                            </div>
+                            <div class="radio-icon">
+                                <i class="fas fa-circle" id="eurRadio"></i>
+                            </div>
+                        </div>
+                        <div class="currency-details expanded">
+                            <div class="detail-row">
+                                <span>Toplam Borç:</span>
+                                <span class="detail-value" id="eurTotal">€900,00</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vadesi Geçmiş Borç:</span>
+                                <span class="detail-value">€150,00</span>
+                            </div>
+                            <div class="account-details">
+                                <h4>Kart Bilgileri</h4>
+                                <div class="detail-row">
+                                    <span>Kart Numarası:</span>
+                                    <span class="detail-value">**** **** **** 9012</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Minimum Payment Calculation Form -->
+                <form id="minimumPaymentForm" class="transaction-form">
+                    <div class="form-group">
+                        <label for="interestRate">Faiz Oranı (%)</label>
+                        <input type="number" id="interestRate" name="interestRate" required min="0" step="0.1" placeholder="Aylık faiz oranını girin" value="1.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="minimumRate">Asgari Ödeme Oranı (%)</label>
+                        <input type="number" id="minimumRate" name="minimumRate" required min="0" step="0.1" placeholder="Asgari ödeme yüzdesini girin" value="10">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" id="selectedCurrency" name="selectedCurrency" value="try">
+                        <button type="submit" class="btn btn-primary">Asgari Borç Hesapla</button>
+                        <a href="index.html" class="btn btn-outline" style="margin-left: 10px;">İptal</a>
+                    </div>
+                </form>
+                
+                <!-- Calculation Result -->
+                <div id="minimumPaymentResult"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'index.html';
+        }
+        
+        function selectCurrency(currency) {
+            // Update radio icons
+            const currencies = ['try', 'usd', 'eur'];
+            currencies.forEach(cur => {
+                const radio = document.getElementById(cur + 'Radio');
+                if (cur === currency) {
+                    radio.className = 'fas fa-check-circle';
+                    radio.style.color = '#3581f4';
+                } else {
+                    radio.className = 'fas fa-circle';
+                    radio.style.color = '#ccc';
+                }
+            });
+            
+            // Set selected currency in hidden input
+            document.getElementById('selectedCurrency').value = currency;
+        }
+        
+        // Handle form submission
+        document.getElementById('minimumPaymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const interestRate = parseFloat(document.getElementById('interestRate').value);
+            const minimumRate = parseFloat(document.getElementById('minimumRate').value);
+            const currency = document.getElementById('selectedCurrency').value;
+            
+            if (!interestRate || !minimumRate) {
+                document.getElementById('minimumPaymentResult').innerHTML = '<div class="result-message error">Lütfen tüm alanları doldurun!</div>';
+                return;
+            }
+            
+            // Get total debt based on selected currency
+            let totalDebt = 0;
+            let currencySymbol = '₺';
+            let currencyName = 'Türk Lirası';
+            
+            switch(currency) {
+                case 'usd':
+                    totalDebt = 1500;
+                    currencySymbol = '$';
+                    currencyName = 'ABD Doları';
+                    break;
+                case 'eur':
+                    totalDebt = 900;
+                    currencySymbol = '€';
+                    currencyName = 'Euro';
+                    break;
+                default: // try
+                    totalDebt = 7500;
+                    currencySymbol = '₺';
+                    currencyName = 'Türk Lirası';
+            }
+            
+            // Calculate minimum payment
+            const interestAmount = totalDebt * (interestRate / 100);
+            const minimumPayment = Math.max(
+                totalDebt * (minimumRate / 100),
+                interestAmount
+            );
+            
+            // Display result
+            document.getElementById('minimumPaymentResult').innerHTML = 
+                '<div class="result-message success">' +
+                '<h4>Hesaplama Sonucu</h4>' +
+                '<p>Para Birimi: ' + currencyName + '</p>' +
+                '<p>Toplam Borç: ' + currencySymbol + totalDebt.toLocaleString() + '</p>' +
+                '<p>Faiz Tutarı: ' + currencySymbol + interestAmount.toFixed(2) + '</p>' +
+                '<p><strong>Asgari Ödeme Tutarı: ' + currencySymbol + minimumPayment.toFixed(2) + '</strong></p>' +
+                '</div>';
+        });
+        
+        // Initialize with TRY selected
+        document.addEventListener('DOMContentLoaded', function() {
+            selectCurrency('try');
+        });
+    </script>
+</body>
+</html>
